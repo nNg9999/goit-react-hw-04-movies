@@ -6,6 +6,9 @@ import HomeInfo from '../components/HomeInfo';
 import tvApiService from '../services/movies-api-service';
 import { toast } from 'react-toastify';
 
+//styles
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 export default class HomePage extends Component {
