@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { func } from 'prop-types';
 
+//utils
+import { toast } from 'react-toastify';
 
 export default class Searchbar extends Component {
 
@@ -17,6 +19,10 @@ export default class Searchbar extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+
+    if (!this.state.inputValue) {
+      toast.info('Add a search question');
+    }
 
     this.props.onSearch(this.state.inputValue);
     this.setState({ inputValue: '' });

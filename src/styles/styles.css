@@ -26,6 +26,14 @@ img {
   height: auto;
 }
 
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration-line: underline;
+}
+
 /*
  * Стили компонента App
  */
@@ -111,12 +119,14 @@ img {
   outline: none;
   padding-left: 4px;
   padding-right: 4px;
+  background-color: lightblue;
 }
 
 .SearchForm-input::placeholder {
   font: inherit;
   font-size: 18px;
 }
+
 
 /*
  * Стили компонента ImageGallery
@@ -233,13 +243,6 @@ img {
 * Стили компонента Link
 */
 
-.link {
-  color: #212121;
-}
-
-.active {
-  color: palevioletred;
-}
 
 /*
 * Стили компонента Navigation
@@ -247,7 +250,7 @@ img {
 
 .Heder {
   display: flex;
-  width: 200px;
+  width: 250px;
   justify-content: space-between;
   list-style: none;
   text-decoration: none;
@@ -255,18 +258,19 @@ img {
   font-weight: bold;
 }
 
-a {
-  text-decoration: none;
+.Navigation-link {
+  color: '#212121';
+  fontWeight: 600
 }
 
-a:hover {
-  text-decoration-line: underline
+.Navigation-link--active {
+  color: 'palevioletred';
 }
+
 
 /*
-* Стили компонента Navigation
+* Стили компонента ShowDetails
 */
-
 
 .ShowDetails {
   display: flex;

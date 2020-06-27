@@ -1,20 +1,17 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import qs from 'qs';
 import Searchbar from '../components/Searchbar';
 import Spinner from '../components/Loader';
 
-
 //utils
 import tvApiService from '../services/movies-api-service';
+import getQueryParams from '../utils/getQueryParams';
 import { toast } from 'react-toastify';
 
 //styles
 import 'react-toastify/dist/ReactToastify.css';
 
-const getQueryParamsFromProps = props =>
-  qs.parse(props.location.search.slice(1));
 
 export default class MoviesPage extends Component {
   state = {
@@ -23,7 +20,7 @@ export default class MoviesPage extends Component {
   };
 
   componentDidMount() {
-    const queryParams = getQueryParamsFromProps(this.props);
+    const queryParams = getQueryParams(this.props.location.search);
 
     if (!queryParams.query) {
       return;
@@ -49,8 +46,9 @@ export default class MoviesPage extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { query: prevQuery } = getQueryParamsFromProps(prevProps);
-    const { query: nextQuery } = getQueryParamsFromProps(this.props);
+
+    const { query: prevQuery } = getQueryParams(prevProps.location.search);
+    const { query: nextQuery } = getQueryParams(this.props.location.search);
 
     if (prevQuery === nextQuery || !nextQuery) {
       return;
@@ -81,7 +79,7 @@ export default class MoviesPage extends Component {
 
 
   render() {
-    const { match } = this.props;
+    const { match, location } = this.props;
     const { movies, loading } = this.state;
 
     return (
@@ -94,7 +92,7 @@ export default class MoviesPage extends Component {
               to={{
                 pathname: `${match.url}/${movie.id}`,
                 state: {
-                  from: this.props.location
+                  from: location,
                 },
               }
               } > {movie.title} </Link>

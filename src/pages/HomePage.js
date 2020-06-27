@@ -6,7 +6,7 @@ import Spinner from '../components/Loader';
 import tvApiService from '../services/movies-api-service';
 import { toast } from 'react-toastify';
 
-import '../styles/styles.css';
+// import '../styles/styles.css';
 
 
 export default class HomePage extends Component {

@@ -3,14 +3,16 @@ import { Route, NavLink } from 'react-router-dom';
 
 
 // components
-import Cast from '../components/Cast';
-import Reviews from '../components/Reviews';
 import Spinner from '../components/Loader';
 import Button from '../components/Button';
+import Cast from '../components/Cast';
+import Reviews from '../components/Reviews';
+
 
 //utils
 import tvApiService from '../services/movies-api-service';
 import { toast } from 'react-toastify';
+
 
 //styles
 import 'react-toastify/dist/ReactToastify.css';
@@ -47,13 +49,15 @@ export default class MovieDetailsPage extends Component {
   };
 
   onGoBack = () => {
-    if (this.props.location.state && this.props.location.state.from) {
-      this.props.history.push(this.props.location.state.from);
-      return;
-    }
+    const { state } = this.props.location;
+    const { push } = this.props.history;
 
-    this.props.history.push('/movies');
+    if (state && state.from) {
+      return push(state.from);
+    }
+    push('/movies');
   };
+
 
   render() {
     const { movie, loading } = this.state;
@@ -70,7 +74,7 @@ export default class MovieDetailsPage extends Component {
               <img
                 src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                 alt="poster"
-              // width="1280"
+                width="500"
               />
             </div>
             <div className="Wrapper">
@@ -99,8 +103,8 @@ export default class MovieDetailsPage extends Component {
               </li>
             </ul>
             <hr />
-            <Route path={`${match.path}/cast`} exact component={Cast} />
-            <Route path={`${match.path}/reviews`} exact component={Reviews} />
+            <Route path={`${match.path}/cast`} component={Cast} />
+            <Route path={`${match.path}/reviews`} component={Reviews} />
           </div>
         </div>}
       </div>

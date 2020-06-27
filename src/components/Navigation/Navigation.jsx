@@ -6,7 +6,24 @@ import routes from '../../routes';
 
 const Navigation = () => (
   <ul className="Heder">
-    <li>
+    {
+      routes.map(({ path, name, isExact, showInMenu }) =>
+        showInMenu ? (
+          <li key={name}>
+            <NavLink
+              to={path}
+              exact={isExact}
+              style={{ color: '#212121', fontWeight: 600 }}
+              activeStyle={{ color: 'palevioletred' }}
+            >
+              {name}
+            </NavLink>
+          </li>
+        )
+          : null
+      )
+    }
+    {/* <li>
       <NavLink
         exact
         to={routes.HOME}
@@ -24,8 +41,8 @@ const Navigation = () => (
       >
         Shows
       </NavLink>
-    </li>
-  </ul>
+    </li> */}
+  </ul >
 );
 
 export default Navigation;

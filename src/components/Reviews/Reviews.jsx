@@ -65,9 +65,11 @@ class Reviews extends Component {
                 <p>{item.content}</p>
               </li>))}
             </>
+
           )
           : <div>We don't have any reviews for this movie</div>}
       </ul>
+
     );
   }
 }

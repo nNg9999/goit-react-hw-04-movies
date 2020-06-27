@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import imagePath from '../assets/pusheen.jpg';
+import imagePath from '../../assets/pusheen.jpg';
 
 const styles = {
   container: { textAlign: 'center' },

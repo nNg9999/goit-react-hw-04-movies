@@ -55,17 +55,20 @@ class Cast extends Component {
     return (
       <div>
         {loading && <Spinner />}
-        {cast && <ul>
-          {cast && cast.map(cast => (<li key={cast.id} >
-            <img
-              src={`https://image.tmdb.org/t/p/w500/${cast.profile_path}`}
-              alt="poster"
-              width="160" />
-            <h3>{cast.name}</h3>
-          </li>))}
-        </ul>}
+        {cast
+          ? (<ul>
+            {
+              cast.map(cast => (<li key={cast.id} >
+                <img
+                  src={`https://image.tmdb.org/t/p/w500/${cast.profile_path}`}
+                  alt="poster"
+                  width="160" />
+                <h3>{cast.name}</h3>
+              </li>))
+            }
+          </ul>)
+          : <div>We don't have any reviews for this movie</div>}
       </div>
-
     )
   }
 }
