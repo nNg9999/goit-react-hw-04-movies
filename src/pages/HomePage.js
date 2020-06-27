@@ -3,7 +3,9 @@ import React, { Component } from 'react';
 import Spinner from '../components/Loader';
 import HomeInfo from '../components/HomeInfo';
 
+//utils
 import tvApiService from '../services/movies-api-service';
+import getQueryParams from '../utils/getQueryParams';
 import { toast } from 'react-toastify';
 
 //styles
@@ -39,7 +41,14 @@ export default class HomePage extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
+    const { query: prevQuery } = getQueryParams(prevProps.location.search);
+    const { query: nextQuery } = getQueryParams(this.props.location.search);
+
+    if (prevQuery === nextQuery || !nextQuery) {
+      return;
+    }
   }
+
 
 
   render() {

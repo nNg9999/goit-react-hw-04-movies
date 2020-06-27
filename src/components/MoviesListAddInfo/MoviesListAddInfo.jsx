@@ -7,7 +7,7 @@ import Cast from '../Cast';
 import Reviews from '../Reviews';
 
 const MoviesListAddInfo = (props) => {
-  const { match } = props;
+  const { match, location } = props;
 
   return (
     <div>
@@ -15,11 +15,21 @@ const MoviesListAddInfo = (props) => {
             Additional information
       <ul>
         <li>
-          <NavLink to={`${match.url}/cast`} style={{ color: '#212121', fontWeight: 600 }}
+          <NavLink
+            to={{
+              pathname: `${match.url}/cast`,
+              state: { from: location }
+            }}
+            style={{ color: '#212121', fontWeight: 600 }}
             activeStyle={{ color: 'palevioletred' }}>Cast</NavLink>
         </li>
         <li>
-          <NavLink to={`${match.url}/reviews`} style={{ color: '#212121', fontWeight: 600 }}
+          <NavLink
+            to={{
+              pathname: `${match.url}/reviews`,
+              state: { from: location }
+            }}
+            style={{ color: '#212121', fontWeight: 600 }}
             activeStyle={{ color: 'palevioletred' }}>Reviews</NavLink>
         </li>
       </ul>

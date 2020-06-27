@@ -4,14 +4,14 @@ import { NavLink } from 'react-router-dom';
 import routes from '../../routes';
 
 
-const Navigation = () => (
+const Navigation = ({ props }) => (
   <ul className="Heder">
     {
       routes.map(({ path, name, isExact, showInMenu }) =>
         showInMenu ? (
           <li key={name}>
             <NavLink
-              to={path}
+              to={{ pathname: path }}
               exact={isExact}
               style={{ color: '#212121', fontWeight: 600 }}
               activeStyle={{ color: 'palevioletred' }}

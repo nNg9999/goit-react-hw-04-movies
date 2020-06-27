@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 // components
 import Layout from './Layout';
 import Spinner from '../components/Loader'
-import Navigation from './Navigation';
+
 
 // import Cast from './Cast';
 // import Reviews from './Reviews';
@@ -25,8 +25,6 @@ const App = () => (
   <ErrorBoundary>
     < BrowserRouter >
       <Layout>
-        <Navigation />
-        <hr />
         <Suspense fallback={<Spinner />}>
           <Switch>
             {
@@ -36,6 +34,7 @@ const App = () => (
                   exact={isExact}
                   path={path}
                   component={RouteComponent}
+
                 />)
               )
             }
