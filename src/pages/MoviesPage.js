@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 
 import Searchbar from '../components/Searchbar';
 import Spinner from '../components/Loader';
+import MoviesList from '../components/MoviesList';
+
 
 //utils
 import tvApiService from '../services/movies-api-service';
@@ -62,6 +63,9 @@ export default class MoviesPage extends Component {
         this.setState({
           movies
         });
+        if (!movies.length) {
+          toast.info('Sory, Nothing was found for your query');
+        }
       })
       .catch(error => {
         this.setState({ error: error.message });
@@ -79,25 +83,17 @@ export default class MoviesPage extends Component {
 
 
   render() {
-    const { match, location } = this.props;
+    // const { match, location } = this.props;
     const { movies, loading } = this.state;
 
     return (
       <div>
         <Searchbar onSearch={this.setSearchQuery} />
         {loading && <Spinner />}
-        {movies && <ul> {movies.map(movie =>
-          (<li key={movie.id} >
-            <Link
-              to={{
-                pathname: `${match.url}/${movie.id}`,
-                state: {
-                  from: location,
-                },
-              }
-              } > {movie.title} </Link>
-          </li>))}
-        </ul>}
+
+        {movies && !loading &&
+          <MoviesList {...this.props} movies={movies} />
+        }
       </div>
     );
   }

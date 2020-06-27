@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 
 import Spinner from '../components/Loader';
+import HomeInfo from '../components/HomeInfo';
 
 import tvApiService from '../services/movies-api-service';
 import { toast } from 'react-toastify';
 
-// import '../styles/styles.css';
 
 
 export default class HomePage extends Component {
@@ -41,29 +40,14 @@ export default class HomePage extends Component {
 
 
   render() {
-    const { match } = this.props;
+
     const { movies, loading } = this.state;
 
     return (
       <div >
         <h1>Trending Today</h1>
-
         {loading && <Spinner />}
-
-        <ul> {movies.map(movie =>
-          (<li key={movie.id} >
-            <Link
-              to={{
-                pathname: `${match.url}movies/${movie.id}`,
-                state: {
-                  from: this.props.location
-                },
-              }
-              } > {movie.title}
-            </Link>
-          </li>
-          ))}
-        </ul>
+        <HomeInfo {...this.props} movies={movies} />
       </div >
     );
   }
