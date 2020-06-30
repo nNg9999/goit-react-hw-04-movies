@@ -7,12 +7,12 @@ import routes from '../../routes';
 const Navigation = ({ props }) => (
   <ul className="Heder">
     {
-      routes.map(({ path, name, isExact, showInMenu }) =>
+      routes.map(({ path, name, exact, showInMenu }) =>
         showInMenu ? (
           <li key={name}>
             <NavLink
               to={{ pathname: path }}
-              exact={isExact}
+              exact={exact}
               style={{ color: '#212121', fontWeight: 600 }}
               activeStyle={{ color: 'palevioletred' }}
             >

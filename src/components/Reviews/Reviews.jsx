@@ -60,9 +60,9 @@ class Reviews extends Component {
         {results.length > 0
           ? (
             <>
-              {results.map(item => (<li key={item.id} >
-                <h3>Autor: {item.author}</h3>
-                <p>{item.content}</p>
+              {results.map(({ id, autor, content }) => (<li key={id} >
+                <h3>Autor: {autor}</h3>
+                <p>{content}</p>
               </li>))}
             </>
 

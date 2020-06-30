@@ -1,16 +1,15 @@
+// Core
 import React, { Component } from 'react';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
+// Components
 import Spinner from '../components/Loader';
 import HomeInfo from '../components/HomeInfo';
 
-//utils
+// Instruments
 import tvApiService from '../services/movies-api-service';
 import getQueryParams from '../utils/getQueryParams';
-import { toast } from 'react-toastify';
-
-//styles
-import 'react-toastify/dist/ReactToastify.css';
-
 
 
 export default class HomePage extends Component {
@@ -24,10 +23,10 @@ export default class HomePage extends Component {
     this.setState({ loading: true });
 
     tvApiService.fetchShowWithTrending()
-      .then(data => {
-        toast.success('Loading Trending');
-        return data
-      })
+      // .then(data => {
+      //   toast.success('Loading Trending');
+      //   return data
+      // })
       .then(movies => {
         this.setState({
           movies: movies.filter(item => item.adult === false)

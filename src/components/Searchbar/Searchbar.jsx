@@ -6,6 +6,8 @@ import { toast } from 'react-toastify';
 
 export default class Searchbar extends Component {
 
+
+
   static propTypes = {
     onSearch: func.isRequired,
   };
@@ -29,6 +31,7 @@ export default class Searchbar extends Component {
   };
 
   render() {
+    const { inputValue } = this.state;
     return (
 
       <form onSubmit={this.handleSubmit}>
@@ -38,7 +41,7 @@ export default class Searchbar extends Component {
           autoFocus={true}
           placeholder="Search movies"
 
-          value={this.state.inputValue}
+          value={inputValue}
           onChange={this.handleChange}
         />
         <button type="submit">Search</button>

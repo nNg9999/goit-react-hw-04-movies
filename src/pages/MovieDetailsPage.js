@@ -1,18 +1,16 @@
+// Core
 import React, { Component } from 'react';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-// components
+// Components
 import Spinner from '../components/Loader';
 import Button from '../components/Button';
 import MovieInfo from '../components/MovieInfo';
 import MoviesListAddInfo from '../components/MoviesListAddInfo';
 
-//utils
+// Instruments
 import tvApiService from '../services/movies-api-service';
-import { toast } from 'react-toastify';
-
-
-//styles
-import 'react-toastify/dist/ReactToastify.css';
 
 export default class MovieDetailsPage extends Component {
   state = {
@@ -22,6 +20,7 @@ export default class MovieDetailsPage extends Component {
 
   componentDidMount() {
     this.fetchDetails();
+
   }
 
   fetchDetails = () => {
@@ -30,13 +29,11 @@ export default class MovieDetailsPage extends Component {
     this.setState({ loading: true });
 
     tvApiService.fetchShowDetails(movieId).then(data => {
-      toast.success('News dounload detalis');
+      toast.success('Movies detalis loading');
       return data
     })
       .then(movie => {
-        this.setState({
-          movie
-        });
+        this.setState({ movie });
       })
       .catch(error => {
         this.setState({ error: error.message });
@@ -53,12 +50,19 @@ export default class MovieDetailsPage extends Component {
       return push(state.from);
     }
     push('/movies');
+
+    // const { history, location } = this.props;
+    // if (location.state) {
+    //   return history.push(location.state.from);
+    // }
+    // history.push('/movies')
+
   };
 
 
   render() {
     const { movie, loading } = this.state;
-
+    const { location } = this.props;
     return (
       <div>
         <Button onClick={this.onGoBack} />
@@ -66,7 +70,7 @@ export default class MovieDetailsPage extends Component {
         {loading && <Spinner />}
         {movie && <div >
           <MovieInfo {...this.props} movies={movie} />
-          <MoviesListAddInfo {...this.props} movies={movie} />
+          <MoviesListAddInfo {...this.props} movies={movie} from={location?.state?.from} />
         </div>}
       </div>
     );

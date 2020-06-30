@@ -83,7 +83,6 @@ export default class MoviesPage extends Component {
 
 
   render() {
-    // const { match, location } = this.props;
     const { movies, loading } = this.state;
 
     return (

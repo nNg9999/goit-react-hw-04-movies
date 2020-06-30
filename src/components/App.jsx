@@ -1,8 +1,9 @@
-// core
+// Сore
 import React, { Suspense } from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 
-// components
+// Сomponents
 import Layout from './Layout';
 import Spinner from '../components/Loader'
 
@@ -15,8 +16,8 @@ import Spinner from '../components/Loader'
 
 import ErrorBoundary from './ErrorBoundary';
 
-//utils
-import { ToastContainer } from 'react-toastify';
+//Instruments
+
 import routes from '../routes';
 
 //styles
@@ -27,18 +28,15 @@ const App = () => (
       <Layout>
         <Suspense fallback={<Spinner />}>
           <Switch>
-            {
-              routes.map(({ name, path, component: RouteComponent, isExact }) =>
-                (<Route
-                  key={name}
-                  exact={isExact}
-                  path={path}
-                  component={RouteComponent}
-
-                />)
-              )
-            }
-            {/* {routes.map(route => <Route key={route.path} {...route} />)} */}
+            {/* {routes.map(({ name, path, component: RouteComponent, isExact }) =>
+              (<Route
+                key={name}
+                exact={isExact}
+                path={path}
+                component={RouteComponent}
+              />)
+            )} */}
+            {routes.map(route => <Route key={route.path} {...route} />)}
             {/* <Route exact path={routes.HOME} component={HomePage} />
             <Route path={routes.MOVIE_DETAILS} component={MovieDetailsPage} />
             <Route path={routes.MOVIE_DETAILS_CAST} component={Cast} />

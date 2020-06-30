@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 //componets
 import Spinner from '../Loader';
 
 //utils
 import tvApiService from '../../services/movies-api-service';
-import { toast } from 'react-toastify';
+import fetchMovies from "../../services/movies-api-service";
 
 //styles
-import 'react-toastify/dist/ReactToastify.css';
 
 
 class Cast extends Component {
@@ -58,12 +59,17 @@ class Cast extends Component {
         {cast
           ? (<ul>
             {
-              cast.map(cast => (<li key={cast.id} >
+              cast.map(({ id, name, profile_path }) => (<li key={id} >
                 <img
-                  src={`https://image.tmdb.org/t/p/w500/${cast.profile_path}`}
+                  src={
+                    profile_path
+                      ? `${fetchMovies.pathImage}/w500${profile_path}`
+                      : fetchMovies.noImage
+                    // `https://image.tmdb.org/t/p/w500/${cast.profile_path}`
+                  }
                   alt="poster"
                   width="160" />
-                <h3>{cast.name}</h3>
+                <h3>{name}</h3>
               </li>))
             }
           </ul>)
